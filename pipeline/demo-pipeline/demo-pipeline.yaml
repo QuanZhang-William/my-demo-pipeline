@@ -3,7 +3,7 @@ kind: Pipeline
 metadata:
   name: demo-pipeline
   labels:
-    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/version: "0.2"
   annotations:
     tekton.dev/pipelines.minVersion: "0.17.0"
     tekton.dev/tags: image-build
@@ -15,7 +15,7 @@ spec:
   params:
     - name: say-hello-image
       type: string
-      default: "bash:latest"
+      default: "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.40.2"
     - name: say-world-image
       type: string
       default: "alpine"
