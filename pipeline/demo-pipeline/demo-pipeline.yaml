@@ -10,6 +10,8 @@ metadata:
     tekton.dev/displayName: "demo-pipeline"
     tekton.dev/platforms: "linux/amd64"
 spec:
+  description: >-
+      This is a demo pipeline
   params:
     - name: say-hello-image
       type: string
