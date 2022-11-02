@@ -11,20 +11,30 @@ metadata:
     tekton.dev/platforms: "linux/amd64"
 spec:
   params:
-  - name: say-hello-image
-    type: string
-    default: "bash:latest"
-  - name: say-world-image
-    type: string
-    default: "alpine"
+    - name: say-hello-image
+      type: string
+      default: "bash:latest"
+    - name: say-world-image
+      type: string
+      default: "alpine"
   tasks:
-  - name: say-hello
-    taskSpec:
-      steps:
-      - image: "$(params.say-hello-image)"
-        script: echo 'hello there'
-  - name: say-world
-    taskSpec:
-      steps:
-      - image: "$(params.say-world-image)"
-        script: echo 'world there'
+    - name: say-hello
+      params:
+        - name: say-hello-image
+          value: "$(params.say-hello-image)"
+      taskSpec:
+        params:
+          - name: say-hello-image
+        steps:
+        - image: "$(params.say-hello-image)"
+          script: echo 'hello there'
+    - name: say-world
+      params:
+        - name: say-world-image
+          value: "$(params.say-world-image)"
+      taskSpec:
+        params:
+          - name: say-world-image
+        steps:
+        - image: "$(params.say-world-image)"
+          script: echo 'world there'
