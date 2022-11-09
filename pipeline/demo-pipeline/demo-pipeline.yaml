@@ -3,7 +3,7 @@ kind: Pipeline
 metadata:
   name: demo-pipeline
   labels:
-    app.kubernetes.io/version: "0.3"
+    app.kubernetes.io/version: "0.4"
   annotations:
     tekton.dev/pipelines.minVersion: "0.17.0"
     tekton.dev/tags: image-build
@@ -39,4 +39,9 @@ spec:
           - name: say-world-image
         steps:
         - image: "$(params.say-world-image)"
+          script: echo 'world there'
+    - name: say-final
+      taskSpec:
+        steps:
+        - image: alpine
           script: echo 'world there'
