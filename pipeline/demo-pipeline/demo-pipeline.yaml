@@ -3,7 +3,7 @@ kind: Pipeline
 metadata:
   name: demo-pipeline
   labels:
-    app.kubernetes.io/version: "0.5"
+    app.kubernetes.io/version: "0.1"
   annotations:
     tekton.dev/pipelines.minVersion: "0.17.0"
     tekton.dev/tags: image-build
@@ -13,22 +13,14 @@ spec:
   description: >-
       This is a demo pipeline
   params:
-    - name: say-hello-image
-      type: string
-      default: "ubuntu"
     - name: say-world-image
       type: string
       default: "alpine"
   tasks:
     - name: say-hello
-      params:
-        - name: say-hello-image
-          value: "$(params.say-hello-image)"
       taskSpec:
-        params:
-          - name: say-hello-image
         steps:
-        - image: "$(params.say-hello-image)"
+        - image: "ubuntu"
           script: echo 'hello there'
     - name: say-world
       params:
@@ -39,9 +31,4 @@ spec:
           - name: say-world-image
         steps:
         - image: "$(params.say-world-image)"
-          script: echo 'world there'
-    - name: say-final
-      taskSpec:
-        steps:
-        - image: alpine
           script: echo 'world there'
