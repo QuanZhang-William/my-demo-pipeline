@@ -15,7 +15,7 @@ spec:
   params:
     - name: say-hello-image
       type: string
-      default: "gcr.io/tekton-releases/github.com/tektoncd/pipeline/cmd/git-init:v0.40.2"
+      default: "ubuntu"
     - name: say-world-image
       type: string
       default: "alpine"
