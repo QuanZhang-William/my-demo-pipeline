@@ -37,7 +37,6 @@ spec:
           script: echo 'world there'
     - name: fetch-repo
       taskRef:
-        resolver: git
         params:
         - name: url
           value: https://github.com/tektoncd/catalog.git
