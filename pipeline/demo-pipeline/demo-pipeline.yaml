@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: demo-pipeline
+  name: demo-pipeline-test
   labels:
     app.kubernetes.io/version: "0.1"
   annotations:
@@ -50,5 +50,4 @@ spec:
         value: $(params.url)
       workspaces:
       - name: output
-        workspace: shared-worksapce
-       
+        workspace: shared-workspace
