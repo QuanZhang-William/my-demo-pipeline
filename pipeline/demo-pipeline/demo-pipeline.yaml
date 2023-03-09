@@ -16,6 +16,9 @@ spec:
     - name: say-world-image
       type: string
       default: "alpine"
+    - name: url
+  workspaces:
+    - name: shared-workspace
   tasks:
     - name: say-hello
       taskSpec:
@@ -32,3 +35,20 @@ spec:
         steps:
         - image: "$(params.say-world-image)"
           script: echo 'world there'
+    - name: fetch-repo
+      taskRef:
+        resolver: git
+        params:
+        - name: url
+          value: https://github.com/tektoncd/catalog.git
+        - name: revision
+          value: main
+        - name: pathInRepo
+          value: task/git-clone/0.6/git-clone.yaml
+      params:
+      - name: url
+        value: $(params.url)
+      workspaces:
+      - name: output
+        workspace: shared-worksapce
+       
